@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Katalog & Generator Part Number</title>
+    <title>Katalog Part Number EEOD</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -28,8 +28,8 @@
         <div class="flex items-center space-x-3">
             <i class="fa-solid fa-microchip text-blue-400 text-2xl"></i>
             <div>
-                <h1 class="font-bold text-lg leading-tight">PN-Master Catalog</h1>
-                <p class="text-xs text-slate-400">Connected to Google Sheets Database</p>
+                <h1 class="font-bold text-lg leading-tight">Catalog Electric & Electronic Outfitting Department</h1>
+                <p class="text-xs text-slate-400">Developed by Fortunaviaza Habib Ainudin X</p>
             </div>
         </div>
         <div class="flex items-center space-x-4">
@@ -60,6 +60,10 @@
                     <i class="fa-solid fa-book text-amber-400 w-5"></i>
                     <span>Katalog Master</span>
                 </a>
+                <a href="#" onclick="switchTab('profile')" id="nav-profile" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl transition hover:bg-slate-700 hover:text-white">
+                    <i class="fa-solid fa-id-card text-sky-400 w-5"></i>
+                    <span>Profil Saya</span>
+                </a>
                 
                 <!-- MENU ADMIN -->
                 <div id="adminNavSection" class="pt-4 border-t border-slate-700 mt-4 hidden">
@@ -80,7 +84,7 @@
                 </div>
             </nav>
             <div class="p-4 border-t border-slate-700 text-xs text-slate-400 text-center">
-                Cloud Sheets • Superadmin v10.0
+                Cloud Sheets • Secure Profile v11.0
             </div>
         </aside>
 
@@ -153,7 +157,7 @@
                     <div id="signUpError" class="text-xs text-red-600 bg-red-50 p-2 rounded-lg hidden"></div>
 
                     <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl text-sm transition shadow-md mt-2">
-                        Minta Kode OTP
+                        Sign Up
                     </button>
                     <div class="text-center border-t pt-2 mt-2 text-xs text-slate-500">
                         Sudah punya akun? <a href="#" onclick="showAuthCard('login')" class="text-blue-600 font-semibold hover:underline">Log In</a>
@@ -428,7 +432,82 @@
                     </div>
                 </section>
 
-                <!-- 4. TAB KELOLA MASTER DATA (ADMIN ONLY) -->
+                <!-- 4. TAB PROFIL SAYA -->
+                <section id="view-profile" class="space-y-6 hidden">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h2 class="text-2xl font-extrabold text-slate-800">Profil & Keamanan Akun</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Perbarui informasi diri Anda dan ubah kata sandi secara aman</p>
+                    </div>
+
+                    <div class="max-w-2xl mx-auto bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                        <form id="formUserProfile" onsubmit="handleUpdateProfileSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4 text-xs">
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Username</label>
+                                    <input type="text" id="profUsername" readonly class="w-full bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 font-bold text-slate-600">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Nama Lengkap / Tampilan</label>
+                                    <input type="text" id="profName" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Email</label>
+                                    <input type="email" id="profEmail" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Nomor Telefon</label>
+                                    <input type="tel" id="profPhone" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block font-bold text-slate-700 mb-1">Perusahaan</label>
+                                    <input type="text" id="profCompany" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Divisi</label>
+                                    <input type="text" id="profDivision" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Bagian / Section</label>
+                                    <input type="text" id="profDepartment" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-200 pt-4 space-y-3">
+                                <h4 class="text-xs font-bold text-slate-800 uppercase flex items-center gap-2">
+                                    <i class="fa-solid fa-key text-amber-500"></i> Ubah Password (Opsional)
+                                </h4>
+                                <p class="text-[11px] text-slate-500">Biarkan bagian password baru kosong jika Anda tidak ingin mengubah password.</p>
+                                
+                                <div class="grid grid-cols-2 gap-3 text-xs">
+                                    <div>
+                                        <label class="block font-semibold text-slate-700 mb-1">Password Baru</label>
+                                        <input type="password" id="profNewPass" placeholder="••••••••" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block font-semibold text-slate-700 mb-1">Konfirmasi Password Baru</label>
+                                        <input type="password" id="profConfirmPass" placeholder="••••••••" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-200 pt-4 bg-amber-50/60 p-4 rounded-xl border border-amber-200/80 space-y-2">
+                                <label class="block text-xs font-bold text-amber-900">
+                                    <i class="fa-solid fa-lock text-amber-600"></i> Verifikasi Password Saat Ini <span class="text-red-500">*</span>
+                                </label>
+                                <p class="text-[11px] text-amber-700">Masukkan password lama/aktif Anda untuk menyetujui perubahan profil.</p>
+                                <input type="password" id="profCurrentPass" required placeholder="Masukkan password saat ini" class="w-full bg-white border border-amber-300 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-amber-500 outline-none font-semibold">
+                            </div>
+
+                            <div id="profError" class="text-xs text-red-600 bg-red-50 p-2.5 rounded-xl hidden"></div>
+
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-sm transition shadow-md">
+                                Simpan Perubahan Profil
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- 5. TAB KELOLA MASTER DATA (ADMIN ONLY) -->
                 <section id="view-masterdata" class="space-y-6 hidden">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-200 pb-3">
                         <div>
@@ -473,7 +552,7 @@
                     </div>
                 </section>
 
-                <!-- 5. TAB KELOLA PENGGUNA (SUPERADMIN ONLY) -->
+                <!-- 6. TAB KELOLA PENGGUNA (SUPERADMIN ONLY) -->
                 <section id="view-userslist" class="space-y-6 hidden">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-200 pb-3">
                         <div>
@@ -614,7 +693,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycby8M3DNqxglJxNWd_sDpNsgsH15lzkPdY09dztnKZ9YIGfKZdKSo_rb7Y8DKjyT8Fr7Zg/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycbzNKOiC3vICEIQkX2-AL0AvD7nR65dVhqsIf-pjZIhOxuNNoj24ltgJ1XJHbRhWVAHYug/exec";
         const SESSION_TIMEOUT_MS = 60 * 60 * 1000;
 
         const DEFAULT_MASTER_DATA = [
@@ -958,6 +1037,7 @@
             }
 
             fetchMasterFromCloud();
+            loadProfileView();
             switchTab('generator');
         }
 
@@ -1066,6 +1146,87 @@
             }
         }
 
+        function loadProfileView() {
+            if (!currentUser) return;
+            document.getElementById('profUsername').value = currentUser.username;
+            document.getElementById('profName').value = currentUser.name || currentUser.username;
+            document.getElementById('profEmail').value = currentUser.email || '';
+            document.getElementById('profPhone').value = currentUser.phone || '';
+            document.getElementById('profCompany').value = currentUser.company || '';
+            document.getElementById('profDivision').value = currentUser.division || '';
+            document.getElementById('profDepartment').value = currentUser.department || '';
+
+            document.getElementById('profCurrentPass').value = '';
+            document.getElementById('profNewPass').value = '';
+            document.getElementById('profConfirmPass').value = '';
+            document.getElementById('profError').classList.add('hidden');
+        }
+
+        async function handleUpdateProfileSubmit(e) {
+            e.preventDefault();
+            const errDiv = document.getElementById('profError');
+            errDiv.classList.add('hidden');
+
+            const currentPass = document.getElementById('profCurrentPass').value.trim();
+            const newPass = document.getElementById('profNewPass').value.trim();
+            const confirmPass = document.getElementById('profConfirmPass').value.trim();
+
+            if (!currentPass) {
+                errDiv.textContent = "Password saat ini wajib diisi untuk verifikasi keamanan!";
+                errDiv.classList.remove('hidden');
+                return;
+            }
+
+            if (newPass || confirmPass) {
+                if (newPass !== confirmPass) {
+                    errDiv.textContent = "Password baru dan konfirmasi password tidak cocok!";
+                    errDiv.classList.remove('hidden');
+                    return;
+                }
+            }
+
+            const payload = {
+                username: currentUser.username,
+                currentPassword: currentPass,
+                newPassword: newPass,
+                confirmPassword: confirmPass,
+                name: document.getElementById('profName').value.trim(),
+                email: document.getElementById('profEmail').value.trim(),
+                phone: document.getElementById('profPhone').value.trim(),
+                company: document.getElementById('profCompany').value.trim(),
+                division: document.getElementById('profDivision').value.trim(),
+                department: document.getElementById('profDepartment').value.trim()
+            };
+
+            showLoader("Memperbarui Profil Anda...");
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: "updateUserProfile",
+                        userData: payload
+                    })
+                });
+                const result = await res.json();
+
+                if (result.status === "success") {
+                    alert(result.message);
+                    currentUser = result.user;
+                    updateSessionTimestamp();
+                    document.getElementById('userName').textContent = currentUser.name;
+                    loadProfileView();
+                } else {
+                    errDiv.textContent = result.message || 'Gagal mengupdate profil.';
+                    errDiv.classList.remove('hidden');
+                }
+            } catch (err) {
+                errDiv.textContent = "Terjadi kesalahan: " + err.message;
+                errDiv.classList.remove('hidden');
+            } finally {
+                hideLoader();
+            }
+        }
+
         async function saveAllMasterToCloud() {
             showLoader("Menyimpan Master Data ke Cloud...");
             try {
@@ -1119,7 +1280,7 @@
             }
 
             activeTab = tabId;
-            ['generator', 'decoder', 'catalog', 'masterdata', 'userslist'].forEach(t => {
+            ['generator', 'decoder', 'catalog', 'profile', 'masterdata', 'userslist'].forEach(t => {
                 const view = document.getElementById(`view-${t}`);
                 const nav = document.getElementById(`nav-${t}`);
                 if (t === tabId) {
@@ -1138,6 +1299,7 @@
             });
 
             if (tabId === 'catalog') fetchCatalogFromCloud();
+            if (tabId === 'profile') loadProfileView();
             if (tabId === 'masterdata') renderMasterDataPanel();
             if (tabId === 'userslist') fetchUsersFromCloud();
         }
