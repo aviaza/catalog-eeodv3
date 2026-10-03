@@ -28,8 +28,8 @@
         <div class="flex items-center space-x-3">
             <i class="fa-solid fa-microchip text-blue-400 text-2xl"></i>
             <div>
-                <h1 class="font-bold text-lg leading-tight">Catalog EEOD</h1>
-                <p class="text-xs text-slate-400">Connected to Cloud Database Database</p>
+                <h1 class="font-bold text-lg leading-tight">PN-Master Catalog</h1>
+                <p class="text-xs text-slate-400">Connected to Google Sheets Database</p>
             </div>
         </div>
         <div class="flex items-center space-x-4">
@@ -60,6 +60,8 @@
                     <i class="fa-solid fa-book text-amber-400 w-5"></i>
                     <span>Katalog Master</span>
                 </a>
+                
+                <!-- MENU ADMIN -->
                 <div id="adminNavSection" class="pt-4 border-t border-slate-700 mt-4 hidden">
                     <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 px-3">Admin Panel</div>
                     <a href="#" onclick="switchTab('masterdata')" id="nav-masterdata" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl transition hover:bg-slate-700 hover:text-white">
@@ -67,9 +69,18 @@
                         <span>Kelola Master Data</span>
                     </a>
                 </div>
+
+                <!-- MENU SUPERADMIN -->
+                <div id="superAdminNavSection" class="pt-4 border-t border-slate-700 mt-4 hidden">
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 px-3">Superadmin Panel</div>
+                    <a href="#" onclick="switchTab('userslist')" id="nav-userslist" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl transition hover:bg-slate-700 hover:text-white">
+                        <i class="fa-solid fa-users-gear text-emerald-400 w-5"></i>
+                        <span>Kelola Pengguna</span>
+                    </a>
+                </div>
             </nav>
             <div class="p-4 border-t border-slate-700 text-xs text-slate-400 text-center">
-                Cloud Sheets • v9.4
+                Cloud Sheets • Superadmin v10.0
             </div>
         </aside>
 
@@ -217,7 +228,6 @@
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                        <!-- Area Input Spesifikasi (7 Cols) -->
                         <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 space-y-6">
                             
                             <div class="space-y-2">
@@ -243,7 +253,6 @@
                                 </div>
                             </div>
 
-                            <!-- INPUT DESKRIPSI TAMBAHAN (DILUAR SEGMEN) -->
                             <div id="extraDescContainer" class="hidden border-t border-slate-200 pt-4 space-y-2">
                                 <label class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between">
                                     <span class="flex items-center gap-2">
@@ -256,7 +265,6 @@
                             </div>
                         </div>
 
-                        <!-- Area Output Preview (5 Cols - Sticky) -->
                         <div class="lg:col-span-5 bg-slate-900 text-white p-6 rounded-2xl shadow-xl space-y-6 sticky top-20 border border-slate-800">
                             <div>
                                 <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
@@ -309,7 +317,7 @@
                             </div>
 
                             <button onclick="saveToCatalog()" class="w-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-3 rounded-xl text-sm transition shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cloud-arrow-up"></i> Simpan ke Cloud Database
+                                <i class="fa-solid fa-cloud-arrow-up"></i> Simpan ke Google Sheets
                             </button>
                         </div>
                     </div>
@@ -358,7 +366,6 @@
                                 </div>
                             </div>
 
-                            <!-- Pilihan Variasi Deskripsi Tambahan Dari Katalog Database -->
                             <div id="decoderCatalogVariations" class="hidden space-y-2 bg-amber-50 p-4 rounded-xl border border-amber-200">
                                 <div class="text-xs font-bold text-amber-900 uppercase flex items-center gap-1.5">
                                     <i class="fa-solid fa-list-check text-amber-600"></i> Variasi Deskripsi Tambahan dari Katalog Master:
@@ -385,7 +392,7 @@
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-200 pb-3">
                         <div>
                             <h2 class="text-2xl font-extrabold text-slate-800">Katalog History Part Number</h2>
-                            <p class="text-xs text-slate-500 mt-0.5">Daftar part number terdaftar di Cloud Database Database</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Daftar part number terdaftar di Google Sheets Database</p>
                         </div>
                         <div class="flex items-center gap-2">
                             <input type="text" id="catalogSearch" oninput="renderCatalogTable()" placeholder="Cari Part Number / Proyek..." class="px-3.5 py-2 border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -431,7 +438,7 @@
                                     Ada Perubahan Belum Disimpan
                                 </span>
                             </div>
-                            <p class="text-xs text-slate-500 mt-0.5">Atur kategori, format digit, opsi segmen, dan simpan langsung ke Cloud Database</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Atur kategori, format digit, opsi segmen, dan simpan langsung ke Google Sheets</p>
                         </div>
                         <div class="flex items-center gap-2">
                             <button onclick="saveAllMasterToCloud()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
@@ -462,6 +469,38 @@
 
                         <div class="lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-6" id="masterEditorPanel">
                             <div class="text-center py-8 text-slate-400 italic">Silakan pilih kategori di sebelah kiri untuk diedit.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. TAB KELOLA PENGGUNA (SUPERADMIN ONLY) -->
+                <section id="view-userslist" class="space-y-6 hidden">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-200 pb-3">
+                        <div>
+                            <h2 class="text-2xl font-extrabold text-slate-800">Pengelolaan Akun Pengguna (Superadmin)</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Daftar pengguna terdaftar di sistem. Anda dapat mengubah role, status, atau menghapus akun.</p>
+                        </div>
+                        <button onclick="fetchUsersFromCloud()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
+                            <i class="fa-solid fa-rotate"></i> Refresh Daftar Users
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-800 text-white border-b">
+                                        <th class="p-3.5">Username</th>
+                                        <th class="p-3.5">Email</th>
+                                        <th class="p-3.5">Perusahaan / Divisi</th>
+                                        <th class="p-3.5">Role</th>
+                                        <th class="p-3.5">Status Akun</th>
+                                        <th class="p-3.5 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody" class="divide-y divide-slate-100">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
@@ -517,9 +556,65 @@
         </div>
     </div>
 
+    <!-- MODAL EDIT USER (SUPERADMIN) -->
+    <div id="editUserModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-lg p-6 space-y-4">
+            <div class="flex justify-between items-center border-b pb-2">
+                <h3 class="font-bold text-slate-800">Edit Akun Pengguna</h3>
+                <button onclick="closeEditUserModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Username</label>
+                    <input type="text" id="uEditUsername" readonly class="w-full bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 font-bold text-slate-700">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Password Baru (Biarkan kosong jika tidak diubah)</label>
+                    <input type="password" id="uEditPassword" placeholder="••••••••" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Role Akun</label>
+                        <select id="uEditRole" class="w-full border border-slate-300 rounded-lg px-3 py-2 font-semibold text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="user">User Biasa</option>
+                            <option value="admin">Admin</option>
+                            <option value="superadmin">Superadmin</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Status Akun</label>
+                        <select id="uEditStatus" class="w-full border border-slate-300 rounded-lg px-3 py-2 font-semibold text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="ACTIVE">ACTIVE (Aktif)</option>
+                            <option value="DISABLED">DISABLED (Dinonaktifkan)</option>
+                            <option value="PENDING_VERIFICATION">PENDING_VERIFICATION</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-600 mb-1">Email</label>
+                    <input type="email" id="uEditEmail" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Perusahaan</label>
+                        <input type="text" id="uEditCompany" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Divisi / Bagian</label>
+                        <input type="text" id="uEditDivision" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end gap-2 border-t pt-3">
+                <button onclick="closeEditUserModal()" class="px-4 py-2 bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl hover:bg-slate-300">Batal</button>
+                <button onclick="saveUserEditSubmit()" class="px-4 py-2 bg-emerald-600 text-white text-xs font-semibold rounded-xl hover:bg-emerald-700">Simpan Perubahan User</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbwCLS2b0uiucAOCwWTbjzS7glcilQ4Ml1GFokdTxMaGdh6lGfgd6O9TzDu3afZ6UMuFDA/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycbx1zO9sSGau7zAi6Q0H2DJ-5nNkxe8kqM5p5HrAOYGsrMpPpbw5hBpdZHHykKzxLvI/exec";
         const SESSION_TIMEOUT_MS = 60 * 60 * 1000;
 
         const DEFAULT_MASTER_DATA = [
@@ -548,6 +643,7 @@
         let originalMasterDataBackup = [];
         let isMasterDataDirty = false;
         let catalogData = [];
+        let usersListData = [];
         let activeTab = 'generator';
         let selectedMasterCatId = null;
         let sessionTimer = null;
@@ -559,8 +655,6 @@
             checkExistingSession();
             setupActivityTracker();
         });
-
-        // ---------------- AUTH CARD NAVIGATION ---------------- //
 
         function showAuthCard(cardType) {
             const title = document.getElementById('authTitle');
@@ -596,8 +690,6 @@
                 fReset.classList.remove('hidden');
             }
         }
-
-        // ---------------- AUTHENTICATION LOGIC ---------------- //
 
         function checkExistingSession() {
             const savedSession = localStorage.getItem('pn_user_session');
@@ -817,7 +909,7 @@
         }
 
         function handleLogout(force = false) {
-            if (!force && isMasterDataDirty && !confirm("Ada perubahan Master Data yang belum disimpan ke Cloud Database. Yakin ingin keluar?")) {
+            if (!force && isMasterDataDirty && !confirm("Ada perubahan Master Data yang belum disimpan ke Google Sheets. Yakin ingin keluar?")) {
                 return;
             }
 
@@ -851,17 +943,23 @@
             document.getElementById('userRole').textContent = currentUser.role;
 
             const adminNav = document.getElementById('adminNavSection');
-            if (currentUser.role === 'admin') {
+            const superAdminNav = document.getElementById('superAdminNavSection');
+
+            if (currentUser.role === 'admin' || currentUser.role === 'superadmin') {
                 adminNav.classList.remove('hidden');
             } else {
                 adminNav.classList.add('hidden');
             }
 
+            if (currentUser.role === 'superadmin') {
+                superAdminNav.classList.remove('hidden');
+            } else {
+                superAdminNav.classList.add('hidden');
+            }
+
             fetchMasterFromCloud();
             switchTab('generator');
         }
-
-        // ---------------- MASTER DATA & GENERATOR ---------------- //
 
         function showLoader(text = "Loading...") {
             document.getElementById('loaderText').textContent = text;
@@ -942,14 +1040,48 @@
             }
         }
 
+        async function fetchUsersFromCloud() {
+            if (!currentUser || currentUser.role !== 'superadmin') return;
+
+            showLoader("Mengambil Daftar Pengguna...");
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        action: "getUsersList", 
+                        requesterUsername: currentUser.username 
+                    })
+                });
+                const result = await res.json();
+                if (result.status === "success") {
+                    usersListData = result.users || [];
+                    renderUsersTable();
+                } else {
+                    alert(result.message);
+                }
+            } catch (err) {
+                alert("Gagal mengambil data user: " + err.message);
+            } finally {
+                hideLoader();
+            }
+        }
+
         async function saveAllMasterToCloud() {
             showLoader("Menyimpan Master Data ke Cloud...");
             try {
                 const res = await fetch(API_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: "saveMasterData", data: masterData })
+                    body: JSON.stringify({ 
+                        action: "saveMasterData", 
+                        requesterUsername: currentUser ? currentUser.username : "",
+                        data: masterData 
+                    })
                 });
                 const result = await res.json();
+                if(result.status === "error") {
+                    alert(result.message);
+                    return;
+                }
                 alert(result.message || "Master Data berhasil disimpan!");
                 originalMasterDataBackup = JSON.parse(JSON.stringify(masterData));
                 setMasterDataDirty(false);
@@ -961,7 +1093,7 @@
         }
 
         function discardMasterChanges() {
-            if (confirm("Membatalkan seluruh perubahan yang belum disimpan ke Cloud Database?")) {
+            if (confirm("Membatalkan seluruh perubahan yang belum disimpan ke Google Sheets?")) {
                 masterData = JSON.parse(JSON.stringify(originalMasterDataBackup));
                 setMasterDataDirty(false);
                 initCategoryDropdowns();
@@ -970,19 +1102,24 @@
         }
 
         function switchTab(tabId) {
-            if (currentUser.role !== 'admin' && tabId === 'masterdata') {
-                alert('Akses ditolak. Hanya Admin yang dapat mengakses Kelola Master Data.');
+            if ((currentUser.role !== 'admin' && currentUser.role !== 'superadmin') && tabId === 'masterdata') {
+                alert('Akses ditolak. Hanya Admin/Superadmin yang dapat mengakses Kelola Master Data.');
+                return;
+            }
+
+            if (currentUser.role !== 'superadmin' && tabId === 'userslist') {
+                alert('Akses ditolak. Hanya Superadmin yang dapat mengakses Kelola Pengguna.');
                 return;
             }
 
             if (activeTab === 'masterdata' && tabId !== 'masterdata' && isMasterDataDirty) {
-                if (!confirm("Ada perubahan Master Data yang belum disimpan ke Cloud Database. Yakin ingin pindah tab?")) {
+                if (!confirm("Ada perubahan Master Data yang belum disimpan ke Google Sheets. Yakin ingin pindah tab?")) {
                     return;
                 }
             }
 
             activeTab = tabId;
-            ['generator', 'decoder', 'catalog', 'masterdata'].forEach(t => {
+            ['generator', 'decoder', 'catalog', 'masterdata', 'userslist'].forEach(t => {
                 const view = document.getElementById(`view-${t}`);
                 const nav = document.getElementById(`nav-${t}`);
                 if (t === tabId) {
@@ -1002,6 +1139,7 @@
 
             if (tabId === 'catalog') fetchCatalogFromCloud();
             if (tabId === 'masterdata') renderMasterDataPanel();
+            if (tabId === 'userslist') fetchUsersFromCloud();
         }
 
         function resolveDescTemplate(category, selectedCodeMap) {
@@ -1062,7 +1200,6 @@
             const category = masterData.find(c => c.id === catId);
             if (!category) return;
 
-            // Kontrol Tampilan Extra Description
             if (category.enableExtraDesc) {
                 extraContainer.classList.remove('hidden');
             } else {
@@ -1263,7 +1400,6 @@
 
             let finalMainDesc = cleanDescriptionString(descStr);
 
-            // Tambahkan Extra Description jika diaktifkan
             const extraText = document.getElementById('genExtraDesc').value.trim();
             if (category.enableExtraDesc && extraText) {
                 finalMainDesc += "\n\n[Keterangan Tambahan]:\n" + extraText;
@@ -1293,7 +1429,6 @@
                 return;
             }
 
-            // Pisahkan Deskripsi Utama & Deskripsi Tambahan
             let mainDesc = document.getElementById('genDescDisplay').textContent.trim();
             if (extraText && mainDesc.includes("[Keterangan Tambahan]:")) {
                 mainDesc = mainDesc.split("[Keterangan Tambahan]:")[0].trim();
@@ -1321,7 +1456,11 @@
             try {
                 const res = await fetch(API_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: "addCatalogItem", data: newItem })
+                    body: JSON.stringify({ 
+                        action: "addCatalogItem", 
+                        requesterUsername: currentUser ? currentUser.username : "",
+                        data: newItem 
+                    })
                 });
                 const result = await res.json();
                 alert(result.message || "Part Number berhasil disimpan!");
@@ -1411,7 +1550,6 @@
             
             currentDecodedBaseDesc = cleanDescriptionString(descStr);
 
-            // Periksa Katalog Master jika ada variasi riwayat untuk Part Number ini
             await fetchCatalogFromCloud();
             const matchedCatalogItems = catalogData.filter(i => i.pn && i.pn.toUpperCase() === inputPn);
 
@@ -1530,9 +1668,17 @@
             try {
                 const res = await fetch(API_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: "updateCatalogItem", data: updatedData })
+                    body: JSON.stringify({ 
+                        action: "updateCatalogItem", 
+                        requesterUsername: currentUser ? currentUser.username : "",
+                        data: updatedData 
+                    })
                 });
                 const result = await res.json();
+                if(result.status === "error") {
+                    alert(result.message);
+                    return;
+                }
                 alert(result.message || "Data berhasil diperbarui!");
                 closeEditCatalogModal();
                 fetchCatalogFromCloud();
@@ -1544,14 +1690,22 @@
         }
 
         async function deleteCatalogItem(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus part number ini dari Cloud Database?')) {
+            if (confirm('Apakah Anda yakin ingin menghapus part number ini dari Google Sheets?')) {
                 showLoader("Menghapus Item...");
                 try {
                     const res = await fetch(API_URL, {
                         method: 'POST',
-                        body: JSON.stringify({ action: "deleteCatalogItem", id: id })
+                        body: JSON.stringify({ 
+                            action: "deleteCatalogItem", 
+                            requesterUsername: currentUser ? currentUser.username : "",
+                            id: id 
+                        })
                     });
                     const result = await res.json();
+                    if(result.status === "error") {
+                        alert(result.message);
+                        return;
+                    }
                     alert(result.message || "Item berhasil dihapus!");
                     fetchCatalogFromCloud();
                 } catch (err) {
@@ -1582,6 +1736,129 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        // ---------------- LOGIC SUPERADMIN (USERS MANAGEMENT) ---------------- //
+
+        function renderUsersTable() {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '';
+
+            if (usersListData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400 italic">Belum ada pengguna terdaftar.</td></tr>`;
+                return;
+            }
+
+            usersListData.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 border-b";
+
+                let roleBadge = '<span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase">USER</span>';
+                if (u.role === 'admin') roleBadge = '<span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase">ADMIN</span>';
+                if (u.role === 'superadmin') roleBadge = '<span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase">SUPERADMIN</span>';
+
+                let statusBadge = '<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase">ACTIVE</span>';
+                if (u.status === 'DISABLED') statusBadge = '<span class="bg-red-100 text-red-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase">DISABLED</span>';
+                if (u.status === 'PENDING_VERIFICATION') statusBadge = '<span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase">PENDING</span>';
+
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-slate-800">${u.username}</td>
+                    <td class="p-3.5 text-slate-600">${u.email}</td>
+                    <td class="p-3.5 text-slate-500">${u.company || '-'} / ${u.division || '-'}</td>
+                    <td class="p-3.5">${roleBadge}</td>
+                    <td class="p-3.5">${statusBadge}</td>
+                    <td class="p-3.5 text-center space-x-1">
+                        <button onclick="openEditUserModal('${u.username}')" class="p-1 text-blue-600 hover:text-blue-800" title="Edit Akun"><i class="fa-solid fa-user-pen"></i></button>
+                        <button onclick="deleteUserSubmit('${u.username}')" class="p-1 text-red-600 hover:text-red-800" title="Hapus Akun"><i class="fa-solid fa-user-minus"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openEditUserModal(username) {
+            const user = usersListData.find(u => u.username === username);
+            if (!user) return;
+
+            document.getElementById('uEditUsername').value = user.username;
+            document.getElementById('uEditPassword').value = '';
+            document.getElementById('uEditRole').value = user.role || 'user';
+            document.getElementById('uEditStatus').value = user.status || 'ACTIVE';
+            document.getElementById('uEditEmail').value = user.email || '';
+            document.getElementById('uEditCompany').value = user.company || '';
+            document.getElementById('uEditDivision').value = user.division || '';
+
+            document.getElementById('editUserModal').classList.remove('hidden');
+        }
+
+        function closeEditUserModal() {
+            document.getElementById('editUserModal').classList.add('hidden');
+        }
+
+        async function saveUserEditSubmit() {
+            const targetUsername = document.getElementById('uEditUsername').value;
+            const updatedUserData = {
+                username: targetUsername,
+                password: document.getElementById('uEditPassword').value,
+                role: document.getElementById('uEditRole').value,
+                status: document.getElementById('uEditStatus').value,
+                email: document.getElementById('uEditEmail').value,
+                company: document.getElementById('uEditCompany').value,
+                division: document.getElementById('uEditDivision').value
+            };
+
+            showLoader("Memperbarui Data Akun...");
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: "updateUserData",
+                        requesterUsername: currentUser.username,
+                        userData: updatedUserData
+                    })
+                });
+                const result = await res.json();
+                if (result.status === "error") {
+                    alert(result.message);
+                    return;
+                }
+                alert(result.message);
+                closeEditUserModal();
+                fetchUsersFromCloud();
+            } catch (err) {
+                alert("Gagal mengupdate user: " + err.message);
+            } finally {
+                hideLoader();
+            }
+        }
+
+        async function deleteUserSubmit(targetUsername) {
+            if (confirm(`Apakah Anda yakin ingin menghapus akun '${targetUsername}' dari sistem?`)) {
+                showLoader("Menghapus Akun...");
+                try {
+                    const res = await fetch(API_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            action: "deleteUserData",
+                            requesterUsername: currentUser.username,
+                            targetUsername: targetUsername
+                        })
+                    });
+                    const result = await res.json();
+                    if (result.status === "error") {
+                        alert(result.message);
+                        return;
+                    }
+                    alert(result.message);
+                    fetchUsersFromCloud();
+                } catch (err) {
+                    alert("Gagal menghapus user: " + err.message);
+                } finally {
+                    hideLoader();
+                }
+            }
+        }
+
+        // ---------------- MASTER DATA PANEL LOGIC ---------------- //
 
         function renderMasterDataPanel() {
             const listContainer = document.getElementById('masterCatList');
@@ -1635,7 +1912,6 @@
                     </div>
                 </div>
 
-                <!-- Konfigurasi Fitur Deskripsi Tambahan -->
                 <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 space-y-3">
                     <div class="flex items-center justify-between">
                         <div>
